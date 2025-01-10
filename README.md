@@ -46,9 +46,6 @@ UnityBridgeKit-iOS provides a robust framework to facilitate communication betwe
 
 ## Installation
 
-### CocoaPods
+### SPM
 
-Add the following line to your `Podfile`:
-
-```ruby
-pod 'UnityBridgeKit'
+Add the following line to your `SPM`:
