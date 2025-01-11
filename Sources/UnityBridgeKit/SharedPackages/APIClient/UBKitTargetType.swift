@@ -28,7 +28,7 @@ import Foundation
 public protocol UBKitTargetType: Encodable {
     
     /// A unique identifier for the target type instance.
-    var id: UUID { get }
+    var id: String { get }
     
     /// The path associated with the target type, often representing an endpoint or resource.
     var path: String { get }
@@ -40,12 +40,11 @@ public protocol UBKitTargetType: Encodable {
     var method: UBKitRequestMethod { get }
 }
 
-fileprivate extension UBKitTargetType {
+public extension UBKitTargetType {
     
     /// Generates a unique notification name using the path, id, and method of the target type.
     var notificationName: Notification.Name {
-        let rawValue = "\(path)_\(id)_\(method.rawValue)"
-        return .init(rawValue: rawValue)
+        return UBKitNotificationNameBuilder().setPath(path).setId(id).setMethod(method.rawValue).build()
     }
 }
 
@@ -109,10 +108,11 @@ fileprivate extension UBKitTargetType {
 ///         print("Failed to decode JSON: \(error)")
 ///     }
 /// }
-/// ``` 
+/// ```
 fileprivate enum UBKitTargetTypeCodingKeys: String, CodingKey {
     case path
     case id
+    case method
     case parameters
 }
 
@@ -140,6 +140,7 @@ public extension UBKitTargetType {
         // Encode the basic properties.
         try container.encode(path, forKey: .path)
         try container.encode(id, forKey: .id)
+        try container.encode(method.rawValue, forKey: .method)
         
         // Encode the `parameters` dictionary, if it exists.
         if let parameters {

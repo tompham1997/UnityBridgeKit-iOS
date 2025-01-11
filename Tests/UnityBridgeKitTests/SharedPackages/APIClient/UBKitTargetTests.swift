@@ -15,7 +15,7 @@ struct UBKitTargetTypeTests {
     func testEncodedToJSONString() {
         // Given
         let target = MockTarget(
-            id: UUID(uuidString: "353CDD82-69D5-49B4-9927-CDDFECF51FCE")!,
+            id: "353CDD82-69D5-49B4-9927-CDDFECF51FCE",
             path: "/test/path",
             parameters: ["key": "value"],
             method: .get
@@ -34,7 +34,7 @@ struct UBKitTargetTypeTests {
     func testNotificationNameGeneration() {
         // Given
         let target = MockTarget(
-            id: UUID(uuidString: "353CDD82-69D5-49B4-9927-CDDFECF51FCE")!,
+            id: "353CDD82-69D5-49B4-9927-CDDFECF51FCE",
             path: "/test/path",
             parameters: nil,
             method: .post
@@ -60,7 +60,7 @@ struct UBKitTargetTypeTests {
             "dictionaryKey": ["nestedKey": "nestedValue"]
         ]
         let target = MockTarget(
-            id: UUID(uuidString: "353CDD82-69D5-49B4-9927-CDDFECF51FCE")!,
+            id: "353CDD82-69D5-49B4-9927-CDDFECF51FCE",
             path: "/test/parameters",
             parameters: parameters,
             method: .post
@@ -86,7 +86,7 @@ struct UBKitTargetTypeTests {
             "unsupportedKey": NSObject() // NSObject is not Encodable
         ]
         let target = MockTarget(
-            id: UUID(),
+            id: UUID().uuidString,
             path: "/unsupported",
             parameters: unsupportedParameter,
             method: .get

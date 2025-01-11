@@ -10,7 +10,7 @@ import Foundation
 
 struct MockTarget: UBKitTargetType  {
     
-    let id: UUID
+    let id: String
     
     let path: String
     
